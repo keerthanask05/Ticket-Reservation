@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-image: url('C:/Users/Yazhini/OneDrive/Desktop/UIT/Mini/m1.avif');
+    	    background-position: center center;
+    	    background-attachment: fixed;
+       	    background-size: cover;
+        }
+
+        header {
+            background-color:#1aa5eb;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+    	    flex-direction: column;
+    	    align-items: center;
+    	    justify-content: center;
+    	    gap: 1.5rem;
+    	    padding: 1rem;
+    	    margin-top: 10rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Ticket Reservation</h1>
+        <p>Select your preferred transport option below:</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Train Transport</h2>
+            <p>Find and book train tickets at your convenience.</p>
+            <a href="form.html">Book Now</a>
+        </div>
+        <div class="card">
+            <h2>Bus Transport</h2>
+            <p>Book tickets for bus travel to your destination.</p>
+            <a href="#">Book Now</a>
+        </div>
+        <div class="card">
+            <h2>Air Transport</h2>
+            <p>Reserve flight tickets quickly and easily.</p>
+            <a href="#">Book Now</a>
+        </div>
+        
+    </div>
+</body>
+</html>

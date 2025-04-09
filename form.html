@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train Ticket Booking Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #0a0a0a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            background-color: #2098cf;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // Define fares based on departure and destination
+        const fares = {
+            "Erode": { "Chennai": 250, "Coimbatore": 150, "Salem": 200 },
+            "Chennai": { "Erode": 250, "Coimbatore": 180, "Salem": 160 },
+            "Coimbatore": { "Erode": 150, "Chennai": 180, "Salem": 140 },
+            "Salem": { "Erode": 200, "Chennai": 160, "Coimbatore": 140 }
+        };
+
+        function calculateFare() {
+            let departure = document.getElementById("departure").value;
+            let destination = document.getElementById("destination").value;
+            let passengers = parseInt(document.getElementById("passengers").value) || 1;
+            let fareBox = document.getElementById("fare");
+
+            if (departure && destination && departure !== destination) {
+                let farePerPerson = fares[departure][destination];
+                let totalFare = farePerPerson * passengers;
+                fareBox.value = "₹" + totalFare;
+            } else {
+                fareBox.value = "Invalid Selection";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Train Ticket Booking</h1>
+
+    <div class="form-container">
+        <form action="/submit-ticket" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="from">Departure Station:</label>
+            <select id="departure" onchange="calculateFare()">
+                <option value="">--Select--</option>
+                <option value="Erode">Erode</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Salem">Salem</option>
+            </select><br>
+
+            <label for="to">Destination Station:</label>
+            <select id="destination" onchange="calculateFare()">
+                <option value="">--Select--</option>
+                <option value="Erode">Erode</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Salem">Salem</option>
+            </select><br>
+
+            <label for="passengers">Number of Passengers:</label>
+            <input type="number" id="passengers" name="passengers" min="1" onchange="calculateFare()" required><br>
+
+            <label for="fare">Ticket Amount:</label>
+            <input type="text" id="fare" readonly>
+
+            <label for="date">Travel Date:</label>
+            <input type="date" id="date" name="date" required><br>
+
+            <label for="time">Travel Time:</label>
+            <input type="time" id="time" name="time" required><br>
+
+            <label for="class">Class:</label>
+            <select id="class" name="class" required>
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+                <option value="first-class">First Class</option>
+            </select><br>
+
+
+
+            <label for="remarks">Additional Remarks:</label>
+            <textarea id="remarks" name="remarks"></textarea><br>
+
+            <button type="submit">Book Ticket</button>
+        </form>
+    </div>
+</body>
+</html>
